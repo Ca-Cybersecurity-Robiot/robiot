@@ -20,11 +20,17 @@ export function getAction(link: string) {
         });
 }
 
-export function postAction() {
+export function putAction(link: string) {
     return axios
-        .post(`${uriAPI}/user`, {
-            firstName: 'Fred',
-            lastName: 'Flintstone',
+        .put(`${uriAPI}/${link}`, {
+            id: 302,
+            link: {
+                params: { rel: 'self' },
+                href: link,
+            },
+            name: 'Destination Location',
+            content: '2.0,2.0',
+            status: 'ACTIVE',
         })
         .then(function (response: string) {
             console.log(response);
@@ -32,11 +38,4 @@ export function postAction() {
         .catch(function (error: string) {
             console.log(error);
         });
-}
-
-export function putAction() {
-    return axios.put(`${uriAPI}/user`, {
-        firstName: 'Fred',
-        lastName: 'Flintstone',
-    });
 }

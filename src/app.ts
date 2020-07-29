@@ -12,7 +12,7 @@ import indexRoute from './routes/index';
 import cors from 'cors';
 import SwaggerUI from 'swagger-ui-express';
 import { SwaggerConfig } from './config/SwaggerConfig';
-import { getAction } from './config/axios';
+import { getAction, putAction } from './config/axios';
 import swaggerJSDoc from 'swagger-jsdoc';
 
 const MongoStore = mongo(session);
@@ -65,5 +65,6 @@ const swaggerSpec = swaggerJSDoc(SwaggerConfig);
 app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(swaggerSpec));
 
 console.log(getAction(''));
+console.log(putAction('/configurations/302'));
 
 export default app;
