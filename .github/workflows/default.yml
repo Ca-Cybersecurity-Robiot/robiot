@@ -18,9 +18,6 @@ on:
             - refactor/*
 
 jobs:
-    default:
-        container:
-            image: node:12-alpine
 
         runs-on: ubuntu-latest
 
