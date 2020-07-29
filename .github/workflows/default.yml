@@ -43,15 +43,16 @@ jobs:
               run: |
                   apk add --no-cache git chromium
                   npm i
+              working-directory: ./client
             - name: Lint
               run: npm run lint
-              working-directory: client
+              working-directory: ./client
             - name: Build
               run: npm run build
-              working-directory: client
+              working-directory: ./client
             - name: Run tests
               env:
                 CHROME_BIN: /usr/bin/chromium-browser
               run: npm run test
-              working-directory: client
+              working-directory: ./client
 
