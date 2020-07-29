@@ -69,6 +69,9 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                 name: dist
+            - name: Where
+              working-directory: ./client
+              run: pwd
             - name: Build the stack
               working-directory: ./client
               run: docker-compose -f docker-compose.yml up -d
