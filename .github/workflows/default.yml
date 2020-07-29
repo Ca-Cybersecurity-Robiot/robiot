@@ -55,10 +55,19 @@ jobs:
                 CHROME_BIN: /usr/bin/chromium-browser
               run: npm run test
               working-directory: ./client
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                name: dist
+                path: dist
     job2:
         needs: job1
         runs-on: ubuntu-latest
         steps:
+          - name: Download dist result for job 1
+            uses: actions/download-artifact@v2
+            with:
+              name: dist
             - uses: actions/checkout@v2
             - name: Build the stack
               working-directory: ./client
