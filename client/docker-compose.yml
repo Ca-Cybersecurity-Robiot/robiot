@@ -1,0 +1,8 @@
+version: "2"
+services:
+  robiot-client-app:
+    container_name: "robiot-client-app"
+    restart: "always"
+    build: .
+    ports:
+      - "8082:80"

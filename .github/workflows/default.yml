@@ -55,4 +55,7 @@ jobs:
                 CHROME_BIN: /usr/bin/chromium-browser
               run: npm run test
               working-directory: ./client
+            - name: Run Docker
+              run: docker-compose up -d
+              working-directory: ./client
 
