@@ -70,9 +70,10 @@ jobs:
               with:
                 name: dist
                 path: ./client/dist
-            - name: Where
-              working-directory: ./client
-              run: ls
             - name: Build the stack
               working-directory: ./client
               run: docker-compose -f docker-compose.yml up -d
+            - name: ZAP Scan
+              uses: zaproxy/action-baseline@v0.3.0
+              with:
+                target: 'http://localhost:8082/'
