@@ -55,8 +55,6 @@ jobs:
                 CHROME_BIN: /usr/bin/chromium-browser
               run: npm run test
               working-directory: ./client
-            - name: Run Docker
-             run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up -d
     job2:
         runs-on: ubuntu-latest
         steps:
