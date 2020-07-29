@@ -26,7 +26,7 @@ jobs:
             - uses: actions/checkout@v2
             - name: Build the stack
               working-directory: ./client
-              run: docker-compose -f docker-compose.yml -f up -d
+              run: docker-compose -f docker-compose.yml up -d
             - name: Checkout repository
               uses: actions/checkout@v2
             - name: Cache node modules
