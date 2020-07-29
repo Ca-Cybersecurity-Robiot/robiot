@@ -64,11 +64,11 @@ jobs:
         needs: job1
         runs-on: ubuntu-latest
         steps:
-          - name: Download dist result for job 1
-            uses: actions/download-artifact@v2
-            with:
-              name: dist
             - uses: actions/checkout@v2
+            - name: Download dist result for job 1
+              uses: actions/download-artifact@v2
+              with:
+                name: dist
             - name: Build the stack
               working-directory: ./client
               run: docker-compose -f docker-compose.yml up -d
