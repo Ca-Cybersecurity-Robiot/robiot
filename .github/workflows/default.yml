@@ -45,9 +45,13 @@ jobs:
                   npm i
             - name: Lint
               run: npm run lint
+              working-directory: client
             - name: Build
               run: npm run build
+              working-directory: client
             - name: Run tests
               env:
                 CHROME_BIN: /usr/bin/chromium-browser
               run: npm run test
+              working-directory: client
+
