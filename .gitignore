@@ -28,3 +28,4 @@ benchmarks/graphs
 
 .idea
 dist/
+api/.env.dev

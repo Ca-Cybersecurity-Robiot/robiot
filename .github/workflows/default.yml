@@ -18,7 +18,7 @@ on:
             - refactor/*
 
 jobs:
-    default:
+    job1:
         container:
             image: node:12-alpine
 
@@ -47,6 +47,9 @@ jobs:
             - name: Lint
               run: npm run lint
               working-directory: ./client
+            - name: Check version dependencies
+              run: npm run ncu
+              working-directory: ./client
             - name: Build
               run: npm run build
               working-directory: ./client
@@ -55,4 +58,25 @@ jobs:
                 CHROME_BIN: /usr/bin/chromium-browser
               run: npm run test
               working-directory: ./client
-
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                name: dist
+                path: ./client/dist
+    job2:
+        needs: job1
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Download dist result for job 1
+              uses: actions/download-artifact@v2
+              with:
+                name: dist
+                path: ./client/dist
+            - name: Build the stack
+              working-directory: ./client
+              run: docker-compose -f docker-compose.yml up -d
+            - name: ZAP Scan
+              uses: zaproxy/action-baseline@v0.3.0
+              with:
+                target: 'http://localhost:8082/'
