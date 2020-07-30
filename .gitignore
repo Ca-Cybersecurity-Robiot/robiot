@@ -30,3 +30,4 @@ benchmarks/graphs
 .idea
 dist/
 .env.dev
+.gitignore
