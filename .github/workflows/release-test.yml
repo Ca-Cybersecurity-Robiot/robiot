@@ -8,8 +8,8 @@ on:
       - test/*
 
 jobs:
-  build:
-    needs: build-quality-test
+  zapproxy:
+    needs: build
     container:
       image: node:12-alpine
 
