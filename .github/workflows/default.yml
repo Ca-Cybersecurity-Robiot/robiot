@@ -75,6 +75,9 @@ jobs:
               run: docker-compose -f docker-compose.yml up -d
             - name: ZAP Scan
               uses: zaproxy/action-baseline@v0.3.0
-              fail_action: false
               with:
                 target: 'http://localhost:8082/'
+                token: ${{ secrets.GITHUB_TOKEN }}
+                docker_name: 'owasp/zap2docker-stable'
+                rules_file_name: '.zap/rules.tsv'
+                cmd_options: '-a'
