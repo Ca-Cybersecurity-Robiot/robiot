@@ -26,7 +26,6 @@ coverage
 # Benchmarking
 benchmarks/graphs
 
-.vscode
 .idea
 dist/
 api/.env.dev
