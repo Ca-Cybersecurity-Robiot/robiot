@@ -6,9 +6,9 @@
 
 > List related PRs against other branches:
 
-name | link
------- | ------
-This is a PR | [link](https://github.com/Ca-Cybersecurity-Robiot/robiot/pulls)
+| name         | link                                                            |
+| ------------ | --------------------------------------------------------------- |
+| This is a PR | [link](https://github.com/Ca-Cybersecurity-Robiot/robiot/pulls) |
 
 ## Remains
 
