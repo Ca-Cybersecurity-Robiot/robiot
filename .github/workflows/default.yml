@@ -79,5 +79,5 @@ jobs:
                 target: 'http://localhost:8082/'
                 token: ${{ secrets.GITHUB_TOKEN }}
                 docker_name: 'owasp/zap2docker-stable'
-                rules_file_name: './client/zap/rules.tsv'
+                rules_file_name: 'client/zap/rules.tsv'
                 cmd_options: '-a'
