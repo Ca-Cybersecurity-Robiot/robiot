@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    needs: build-quality-test
     container:
       image: node:12-alpine
 
