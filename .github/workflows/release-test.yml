@@ -1,17 +1,16 @@
 name: Build & Zaproxy
 
 on:
-    push:
-        branches:
-            - test
-        tags:
-            - test/*
+  push:
+    branches:
+      - test
+    tags:
+      - test/*
 
 jobs:
   zapproxy:
-    needs: build-quality-test
+    needs: build
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
