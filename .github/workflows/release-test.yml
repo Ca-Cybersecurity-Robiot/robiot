@@ -1,4 +1,4 @@
-name: Build, Quality, Test
+name: Build & Zaproxy
 
 on:
   push:
