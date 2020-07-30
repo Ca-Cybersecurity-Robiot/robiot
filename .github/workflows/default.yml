@@ -76,5 +76,7 @@ jobs:
             - name: ZAP Scan
               uses: zaproxy/action-baseline@v0.3.0
               with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                docker_name: 'owasp/zap2docker-stable'
                 target: 'http://localhost:8082/'
-                fail_action: true
+                fail_action: false
