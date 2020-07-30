@@ -75,9 +75,6 @@ jobs:
               run: docker-compose -f docker-compose.yml up -d
             - name: ZAP Scan
               uses: zaproxy/action-baseline@v0.3.0
+              fail_action: false
               with:
                 target: 'http://localhost:8082/'
-                fail_action:
-                  description: 'Fail or pass the action based on alerts'
-                  required: false
-                  default: false
