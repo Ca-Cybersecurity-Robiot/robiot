@@ -1,36 +1,42 @@
-//const axios = require('axios').default;
 import axios, { AxiosResponse } from 'axios';
 
 const uriAPI = 'http://localhost:8080/ecotree/robiot-api'; //One API per Robiot !
 
-export function getRobiotPosition() {
-    return axios
+export async function getRobiotPosition(): Promise<AxiosResponse> {
+    let result = null;
+    await axios
         .get(`${uriAPI}/configurations/301`, {
             params: {},
         })
         .then(function (response: AxiosResponse) {
-            console.log(response.data);
+            result = response.data;
         })
         .catch(function (error: string) {
             console.log(error);
         });
+
+    return result;
 }
 
-export async function getRobiotBattery() {
-    return await axios
+export async function getRobiotBattery(): Promise<AxiosResponse> {
+    let result = null;
+    await axios
         .get(`${uriAPI}/configurations/101`, {
             params: {},
         })
         .then(function (response: AxiosResponse) {
-            return response.data;
+            result = response.data;
         })
         .catch(function (error: string) {
             console.log(error);
         });
+
+    return result;
 }
 
-export function moveRobiot(x: string, y: string) {
-    return axios
+export async function moveRobiot(x: string, y: string): Promise<AxiosResponse> {
+    let result = null;
+    await axios
         .put(`${uriAPI}/configurations/302`, {
             id: '302',
             link: {
@@ -42,9 +48,11 @@ export function moveRobiot(x: string, y: string) {
             status: 'ACTIVE',
         })
         .then(function (response: AxiosResponse) {
-            console.log(response.data);
+            result = response.data;
         })
         .catch(function (error: string) {
             console.log(error);
         });
+
+    return result;
 }

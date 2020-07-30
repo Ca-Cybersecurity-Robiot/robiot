@@ -12,7 +12,7 @@ import indexRoute from './routes/index';
 import cors from 'cors';
 import SwaggerUI from 'swagger-ui-express';
 import { SwaggerConfig } from './config/SwaggerConfig';
-import { getRobiotBattery, getRobiotPosition, moveRobiot } from './config/axios';
+import { getRobiotBattery, getRobiotPosition, moveRobiot } from './services/robiot.service';
 import swaggerJSDoc from 'swagger-jsdoc';
 
 const MongoStore = mongo(session);
@@ -64,8 +64,8 @@ app.use(indexRoute);
 const swaggerSpec = swaggerJSDoc(SwaggerConfig);
 app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(swaggerSpec));
 
-getRobiotBattery().then(console.log);
-getRobiotPosition().then(console.log);
-moveRobiot('0.2', '0.2').then(console.log);
+getRobiotBattery();
+getRobiotPosition();
+moveRobiot('0.2', '0.2');
 
 export default app;
