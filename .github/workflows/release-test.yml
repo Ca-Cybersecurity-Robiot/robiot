@@ -1,18 +1,15 @@
 name: Build & Zaproxy
 
 on:
-  push:
-    branches:
-      - test
-    tags:
-      - test/*
+    push:
+        branches:
+            - test
+        tags:
+            - test/*
 
 jobs:
   zapproxy:
-    needs: build
-    container:
-      image: node:12-alpine
-
+    needs: build-quality-test
     runs-on: ubuntu-latest
 
     steps:
