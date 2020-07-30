@@ -8,7 +8,7 @@ on:
       - test/*
 
 jobs:
-  build:
+  build-quality-test:
     container:
       image: node:12-alpine
 
@@ -29,16 +29,32 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Install dependencies
+        run: |
+          apk add --no-cache git chromium
+          npm i
+        working-directory: ./client
+      - name: Lint
+        run: npm run lint
+        working-directory: ./client
+      - name: Check version dependencies
+        run: npm run ncu
+        working-directory: ./client
       - name: Build
         run: npm run build
+        working-directory: ./client
+      - name: Run tests
+        env:
+          CHROME_BIN: /usr/bin/chromium-browser
+        run: npm run test
         working-directory: ./client
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dist
           path: ./client/dist
-  zapproxy:
-    needs: build
+  zaproxy:
+    needs: build-quality-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
