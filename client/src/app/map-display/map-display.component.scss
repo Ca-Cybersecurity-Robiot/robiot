@@ -1,4 +1,4 @@
-.title {
+.title, .legend {
     text-align: center;
 }
 
@@ -12,20 +12,9 @@ table {
         vertical-align: middle;
     }
 
-    // Start
-    .D {
-        color: #1976d2;
-        font-weight: bold;
-    }
-    // Trees
-    .O {
-        color: #388e3c;
-        font-weight: bold;
-    }
-    // Obstacles
-    .X {
-        color: #e53935;
-        font-weight: bold;
+    .row-col-nb {
+        font-style: italic;
+        font-size: 12px;
     }
 
     // Robot image
@@ -33,4 +22,20 @@ table {
         height: auto;
         width: 36px;
     }
+}
+
+// Start
+.D {
+    color: #1976d2;
+    font-weight: bold;
+}
+// Trees
+.O {
+    color: #388e3c;
+    font-weight: bold;
+}
+// Obstacles
+.X {
+    color: #e53935;
+    font-weight: bold;
 }

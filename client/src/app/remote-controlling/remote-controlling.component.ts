@@ -109,8 +109,8 @@ export class RemoteControllingComponent implements OnInit {
     displayInfoMessage(msg: string) {
         this.infoMessage = msg;
         // Cleans message after five seconds
-        // setTimeout(() => {
-        //     this.infoMessage = null;
-        // }, 5000);
+        setTimeout(() => {
+            this.infoMessage = null;
+        }, 5000);
     }
 }

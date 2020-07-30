@@ -28,7 +28,7 @@ export class MapDisplayComponent implements OnInit {
     ngOnInit(): void {
         this.createMap();
 
-        this.updateMap = this.events.subscribe(() => this.createMap());
+        this.updateMap = this.events?.subscribe(() => this.createMap());
     }
 
     createMap() {
