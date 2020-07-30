@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [],
-    imports: [CommonModule],
+    imports: [CommonModule, HttpClientModule, RouterModule],
+    exports: [HttpClientModule, RouterModule],
 })
 export class SharedModule {}

@@ -1,0 +1,16 @@
+<div class="container">
+    <h3 class="title col-12">{{ terrain.name }}</h3>
+
+    <table>
+        <tbody>
+            <tr *ngFor="let row of rows">
+                <td *ngFor="let column of columns" [ngClass]="map[column][row]">
+                    <img src="assets/images/blender-icon3.png" alt="" class="blender-img"
+                         *ngIf="map[column][row] == 'R'">
+
+                    <span *ngIf="map[column][row] != 'R'">{{ map[column][row] }}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
