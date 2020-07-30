@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import * as UserController from '../controllers/user.controller';
-import * as passportConfig from '../config/passport';
 import { AuthController } from '../controllers/auth.controller';
+import * as UserController from '../controllers/user.controller';
 
 const router = Router();
 const API_URL = '/api/v1/users/';

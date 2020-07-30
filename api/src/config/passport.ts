@@ -1,11 +1,9 @@
 import passport from 'passport';
+import { Strategy } from 'passport-jwt';
 import passportLocal from 'passport-local';
-import { Strategy, ExtractJwt } from 'passport-jwt';
-import { Request, Response, NextFunction } from 'express';
-import { JwtConfig } from './JwtConfig';
-import { User, UserDocument } from '../models/User';
+import { User } from '../models/User';
 import { comparePassword } from '../services/user.service';
-import logger from '../util/logger';
+import { JwtConfig } from './JwtConfig';
 
 const LocalStrategy = passportLocal.Strategy;
 
