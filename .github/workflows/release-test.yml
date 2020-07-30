@@ -9,6 +9,7 @@ on:
 
 jobs:
   zapproxy:
+    needs: build-quality-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
