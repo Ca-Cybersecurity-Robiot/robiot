@@ -29,5 +29,4 @@ benchmarks/graphs
 .vscode
 .idea
 dist/
-.env.dev
-.gitignore
+api/.env.dev
