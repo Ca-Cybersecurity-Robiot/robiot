@@ -8,7 +8,7 @@ import { ParseMapService } from '../../core/services/parse-map.service';
 })
 export class HomeComponent implements OnInit {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    alert: boolean ;
+    alert:boolean ;
     mapReader = null;
     constructor(private parseMapService: ParseMapService) {}
 
@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
             mapFile.text().then( (data) => {
                 this.mapReader = data;
                 this.parseMapService.parseFile(this.mapReader);
-            })
-        }else{
-            this.alert = false ;
+            });
+        } else {
+            this.alert =false ;
             console.log('File type error');
         }
 
