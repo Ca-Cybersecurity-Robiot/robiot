@@ -4,9 +4,9 @@
 
 ## SSL/TLS Sécurisation du lien entre robiot et API
 
-l'objectif de ce chapitre est de présenter une méthode d'authentification basée sur les certificats SSL/TLS et la configuration tomcat.
+L'objectif de ce chapitre est de présenter une méthode d'authentification basée sur les certificats SSL/TLS et la configuration tomcat.
 Cette méthode requiert au minimum 3 certificats :
- - Un certificat pour l'autorité de certification, ce certificat peut être généré manuellement ou bien vous pouvez acheter les signatures nécessaire auprès d'une autorité de certification 
+ - Un certificat pour l'autorité de certification, ce certificat peut être généré manuellement ou bien vous pouvez acheter les signatures nécessaires auprès d'une autorité de certification
  - Un certificat pour le serveur (à faire signer par l'autorité de certification)
  - Un certificat pour le client (à faire signer par l'autorité de certification)
  
@@ -85,7 +85,7 @@ keytool -importkeystore -destkeystore tomcat.keystore -srckeystore -ClientCert.p
            protocol="org.apache.coyote.http11.Http11NioProtocol"
            SSLEnabled="true" scheme="https" secure="true"
            truststoreFile="/opt/tomcat/apache-tomcat-9.0.37/certificat/CA/caCerts.jks" truststorePass="password"
-	   keystoreFile="/opt/tomcat/apache-tomcat-9.0.37/certificat/tomcat.keystore" keystorePass="password"
+	       keystoreFile="/opt/tomcat/apache-tomcat-9.0.37/certificat/tomcat.keystore" keystorePass="password"
            clientAuth="false" sslProtocol="TLS"
            />
 ```
