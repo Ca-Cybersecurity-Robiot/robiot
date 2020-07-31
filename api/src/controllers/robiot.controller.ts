@@ -65,7 +65,7 @@ export const putMoveRobiot = asyncHandler(async (req: Request, res: Response, ne
 
     const errors = validationResult(req);
 
-    if (errors.errors.length) throw new Error(JSON.stringify(errors));
+    if (!errors.isEmpty) throw new Error(JSON.stringify(errors));
 
     logger.debug(req.body);
     const { content } = req.body;
