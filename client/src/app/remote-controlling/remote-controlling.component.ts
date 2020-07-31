@@ -53,7 +53,7 @@ export class RemoteControllingComponent implements OnInit {
 
         if (validDestination.valid) {
             // Builds the new config object to update
-            let newConfig = new Configuration();
+            const newConfig = new Configuration();
             newConfig.id = this.positionConfig.id;
             let content: string;
             if (this.form.value.coord == 'x') {

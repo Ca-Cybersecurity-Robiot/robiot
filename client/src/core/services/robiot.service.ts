@@ -18,7 +18,7 @@ export class RobiotService {
     }
 
     // Gets the value of abscissa from a config's content value
-    getXCoordFromConfig(config: Configuration): String {
+    getXCoordFromConfig(config: Configuration): string {
         // Checks that the provided config is form a position
         if (config.id == 301) {
             return config?.content.split(',')[0];
@@ -26,7 +26,7 @@ export class RobiotService {
     }
 
     // Gets the value of ordinate from a config's content value
-    getYCoordFromConfig(config: Configuration): String {
+    getYCoordFromConfig(config: Configuration): string {
         // Checks that the provided config is form a position
         if (config.id == 301) {
             return config?.content.split(',')[1];
@@ -43,7 +43,7 @@ export class RobiotService {
 
     // Creates a bi-dimensionnal array representing a terrain from a terrain object
     buildArrayFromTerrain(terrain: Terrain): Array<Array<string>> {
-        let map = Array.from({ length: terrain.width }, () =>
+        const map = Array.from({ length: terrain.width }, () =>
             Array.from({ length: terrain.height }, () => CaseValue.EMPTY),
         );
 
@@ -51,29 +51,29 @@ export class RobiotService {
         map[0][0] = CaseValue.START;
 
         // Obstacles
-        for (let obstacle of terrain.obstacles) {
+        for (const obstacle of terrain.obstacles) {
             switch (obstacle.direction) {
                 case Direction.DOWN: {
-                    for (let i = obstacle.start_y; i < obstacle.start_y + obstacle.length; i++) {
-                        map[obstacle.start_x][i] = CaseValue.OBSTACLE;
+                    for (let i = obstacle.startY; i < obstacle.startY + obstacle.length; i++) {
+                        map[obstacle.startX][i] = CaseValue.OBSTACLE;
                     }
                     break;
                 }
                 case Direction.UP: {
-                    for (let i = obstacle.start_y; i > obstacle.start_y - obstacle.length; i--) {
-                        map[obstacle.start_x][i] = CaseValue.OBSTACLE;
+                    for (let i = obstacle.startY; i > obstacle.startY - obstacle.length; i--) {
+                        map[obstacle.startX][i] = CaseValue.OBSTACLE;
                     }
                     break;
                 }
                 case Direction.LEFT: {
-                    for (let i = obstacle.start_x; i > obstacle.start_x - obstacle.length; i--) {
-                        map[i][obstacle.start_y] = CaseValue.OBSTACLE;
+                    for (let i = obstacle.startX; i > obstacle.startX - obstacle.length; i--) {
+                        map[i][obstacle.startY] = CaseValue.OBSTACLE;
                     }
                     break;
                 }
                 case Direction.RIGHT: {
-                    for (let i = obstacle.start_x; i < obstacle.start_x + obstacle.length; i++) {
-                        map[i][obstacle.start_y] = CaseValue.OBSTACLE;
+                    for (let i = obstacle.startX; i < obstacle.startX + obstacle.length; i++) {
+                        map[i][obstacle.startY] = CaseValue.OBSTACLE;
                     }
                     break;
                 }
@@ -81,7 +81,7 @@ export class RobiotService {
         }
 
         // Trees
-        for (let tree of terrain.trees) {
+        for (const tree of terrain.trees) {
             map[tree.x][tree.y] = CaseValue.TREE;
         }
 
@@ -97,7 +97,7 @@ export class RobiotService {
         otherCoordValue,
     ): { valid: boolean; msg?: string } {
         switch (coordToChange) {
-            case 'x': {
+            case 'x':
                 // Checks bounds
                 if (newValue > map.length || newValue < 0) {
                     return { valid: false, msg: 'Destination non valide, en dehors du terrain' };
@@ -117,8 +117,7 @@ export class RobiotService {
                     }
                 }
                 break;
-            }
-            case 'y': {
+            case 'y':
                 // Checks bounds
                 if (newValue > map[0].length || newValue < 0) {
                     return { valid: false, msg: 'Destination non valide, en dehors du terrain' };
@@ -139,7 +138,6 @@ export class RobiotService {
                 }
 
                 break;
-            }
         }
 
         return { valid: true };

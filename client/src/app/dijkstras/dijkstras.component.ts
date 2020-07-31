@@ -10,7 +10,7 @@ import { RobiotService } from '../../core/services/robiot.service';
 })
 export class DijkstrasComponent implements OnInit {
     public map: Array<Array<string>>;
-    public result: { map: Array<Array<any>>; report: String };
+    public result: { map: Array<Array<any>>; report: string };
     public rows: number[];
     public columns: number[];
 

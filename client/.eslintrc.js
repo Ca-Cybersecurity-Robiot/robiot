@@ -14,7 +14,6 @@ module.exports = {
     ],
     rules: {
         quotes: ["error", "single", {"avoidEscape": true}],
-        indent: ["error", 4],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-explicit-any": 1,
         "@typescript-eslint/no-inferrable-types": [

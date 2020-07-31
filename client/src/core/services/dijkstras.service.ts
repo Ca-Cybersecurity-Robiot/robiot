@@ -6,16 +6,14 @@ import { Position } from '../../shared/models/position.model';
     providedIn: 'root',
 })
 export class DijkstrasService {
-    constructor() {}
-
     useDijkstrasAlgorithm(
-        map: Array<Array<String>>,
+        map: Array<Array<string>>,
         position: Position,
         treesToCheck: Position[],
-    ): { map: Array<Array<{ distance: number; terrain: String }>>; report: String } {
+    ): { map: Array<Array<{ distance: number; terrain: string }>>; report: string } {
         let trees = treesToCheck;
         let newMap;
-        let report: String = '';
+        let report: string = '';
 
         // Iterates as long as there are trees left to check+
         while (trees.length > 0) {
@@ -26,7 +24,7 @@ export class DijkstrasService {
             this.fillEveryDirection(newMap, position, 1);
             // Find closest tree
             let closestTree = trees[0];
-            for (let tree of trees) {
+            for (const tree of trees) {
                 if (newMap[tree.x][tree.y].distance < newMap[closestTree.x][closestTree.y]) {
                     closestTree = tree;
                 }
@@ -85,9 +83,9 @@ export class DijkstrasService {
         }
     }
 
-    private initiateMap(map: Array<Array<String>>, position) {
+    private initiateMap(map: Array<Array<string>>, position) {
         //
-        let newMap = Array.from({ length: map.length }, () => Array.from({ length: map[0].length }, () => null));
+        const newMap = Array.from({ length: map.length }, () => Array.from({ length: map[0].length }, () => null));
 
         // Fills the map
         for (let i = 0; i < map.length; i++) {

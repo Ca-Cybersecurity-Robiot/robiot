@@ -5,8 +5,8 @@ export class Terrain {
     height: number;
     width: number;
     obstacles: {
-        start_x: number;
-        start_y: number;
+        startX: number;
+        startY: number;
         length: number;
         direction: Direction;
     }[];
