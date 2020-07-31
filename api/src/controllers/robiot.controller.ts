@@ -12,7 +12,7 @@ import { getRobiotBattery, getRobiotPosition, moveRobiot, getRobiotStatus } from
  * get Config list from one ROBIOT
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getConfigListFromRobiot = async (req: Request, res: Response, next: NextFunction) => {
+export const getConfigListFromRobiot = async (req: Request, res: Response) => {
     logger.debug(req.body);
     const result = await getRobiotPosition();
     res.status(200).send(result);
@@ -22,6 +22,8 @@ export const getConfigListFromRobiot = async (req: Request, res: Response, next:
  * GET /api/v1/robiot/:ConfigId
  * get Robiot config by config Id
  */
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getConfigByIdFromRobiot = async (req: Request, res: Response) => {
     let result;
     if (req.params.configId == '301') {
