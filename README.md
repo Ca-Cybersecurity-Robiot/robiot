@@ -6,7 +6,7 @@
 For run API :
 
 Run 
-```
+```shell script
 cd api/
 docker-compose up -d
 ```
