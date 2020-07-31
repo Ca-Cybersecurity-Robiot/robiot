@@ -81,7 +81,7 @@ jobs:
       - name: Build project # This would actually build your project, using zip for an example artifact
         working-directory: ./client
         run: |
-          zip --junk-paths my-artifact dist
+          zip --junk-paths my-artifact dist/
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
