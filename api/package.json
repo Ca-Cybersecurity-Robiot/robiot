@@ -79,6 +79,7 @@
         "@types/express-session": "^1.17.0",
         "@types/jest": "^26.0.8",
         "@types/jquery": "^3.5.1",
+        "@types/express-validator": "^3.0.0",
         "@types/lodash": "^4.14.158",
         "@types/lusca": "^1.6.2",
         "@types/mongoose": "^5.7.34",

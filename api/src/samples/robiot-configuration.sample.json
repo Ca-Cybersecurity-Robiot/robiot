@@ -1,0 +1,83 @@
+{
+    "_size": 6,
+    "_link": {
+        "params": {
+            "rel": "uri"
+        },
+        "href": "/configurations/"
+    },
+    "configuration": [
+        {
+            "id": 401,
+            "link": {
+                "params": {
+                    "rel": "self"
+                },
+                "href": "/configurations//401"
+            },
+            "name": "Measuring Module Status",
+            "content": "READY",
+            "status": "ACTIVE"
+        },
+        {
+            "id": 402,
+            "link": {
+                "params": {
+                    "rel": "self"
+                },
+                "href": "/configurations//402"
+            },
+            "name": "Remaining Probing Time",
+            "content": "180000",
+            "status": "ACTIVE"
+        },
+        {
+            "id": 101,
+            "link": {
+                "params": {
+                    "rel": "self"
+                },
+                "href": "/configurations//101"
+            },
+            "name": "Battery Consummed",
+            "content": "0.010416666666666668",
+            "status": "ACTIVE"
+        },
+        {
+            "id": 201,
+            "link": {
+                "params": {
+                    "rel": "self"
+                },
+                "href": "/configurations//201"
+            },
+            "name": "Engine Status",
+            "content": "stopped",
+            "status": "ACTIVE"
+        },
+        {
+            "id": 301,
+            "link": {
+                "params": {
+                    "rel": "self"
+                },
+                "href": "/configurations//301"
+            },
+            "name": "Current Location",
+            "content": "0.0,0.0",
+            "status": "ACTIVE"
+        },
+        {
+            "id": 302,
+            "link": {
+                "params": {
+                    "rel": "self"
+                },
+                "href": "/configurations//302"
+            },
+            "name": "Destination Location",
+            "content": "0.0,0.0",
+            "status": "ACTIVE"
+        }
+    ]
+}
