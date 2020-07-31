@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ParseMapService } from '../../core/services/parse-map.service';
 
 @Component({
     selector: 'app-home',
@@ -8,9 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HomeComponent implements OnInit {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     alert: boolean = null ;
-    mapReader= new FileReader()  ;
-    mapReader1 = null;
-    constructor() {}
+    mapReader = null;
+    constructor(private parseMapService: ParseMapService) {}
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     ngOnInit(): void {}
@@ -20,8 +20,9 @@ export class HomeComponent implements OnInit {
         if (tab[1] === 'txt') {
             this.alert = true;
             mapFile.text().then( data => {
-                this.mapReader1 = data;
-                console.log(this.mapReader1)})
+                this.mapReader = data;
+                this.parseMapService.parseFile(this.mapReader);
+                console.log(this.mapReader)})
         }
         else{
             this.alert = false ;
