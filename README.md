@@ -2,21 +2,21 @@
 ![Build, Quality, Test](https://github.com/Ca-Cybersecurity-Robiot/robiot/workflows/Build,%20Quality,%20Test/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e7d04395ccee48d5bcf0ed850cfc1078)](https://app.codacy.com/gh/Ca-Cybersecurity-Robiot/robiot?utm_source=github.com&utm_medium=referral&utm_content=Ca-Cybersecurity-Robiot/robiot&utm_campaign=Badge_Grade_Settings)
 
-
 ## API
-**For run application :**
-1. Run 
+For run API :
+
+Run 
 ```
 cd api/
 docker-compose up -d
 ```
-2. Run 
+Run 
 
 ``
 npm install
 ``
 
-3. Run 
+And run 
 
 ``
 npm start
@@ -29,18 +29,18 @@ npm run watch-debug
 ``
 
 ## CLIENT
-**For run application :**
-1. Run 
+For run client :
+
+Run 
 ```
 cd client/
 npm install
 ```
+And run
 
-2. Run
-
-``
+```
 npm start
-``
+```
 
 End to end test :
 
