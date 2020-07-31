@@ -2,6 +2,8 @@
 ![Build, Quality, Test](https://github.com/Ca-Cybersecurity-Robiot/robiot/workflows/Build,%20Quality,%20Test/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e7d04395ccee48d5bcf0ed850cfc1078)](https://app.codacy.com/gh/Ca-Cybersecurity-Robiot/robiot?utm_source=github.com&utm_medium=referral&utm_content=Ca-Cybersecurity-Robiot/robiot&utm_campaign=Badge_Grade_Settings)
 
+Vous pouvez avoir l'accès à la version packagée [ici](https://github.com/Ca-Cybersecurity-Robiot/robiot/releases).
+
 ## API
 For run API :
 
