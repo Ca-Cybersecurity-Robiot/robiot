@@ -42,6 +42,11 @@ jobs:
         working-directory: ./client
         run: |
           npm run build
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: ./client/dist
 
   release:
     needs: build
@@ -59,6 +64,11 @@ jobs:
         run: |
           pwd
           ls
+      - name: Download dist result for job 1
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: ./client/dist
       - name: Build project # This would actually build your project, using zip for an example artifact
         working-directory: ./client
         run: |
