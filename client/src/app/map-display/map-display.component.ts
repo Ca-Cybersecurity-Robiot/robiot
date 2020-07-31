@@ -10,14 +10,15 @@ import { Terrain } from '../../shared/models/terrain.model';
     selector: 'app-map-display',
     templateUrl: './map-display.component.html',
     styleUrls: ['./map-display.component.scss'],
+    providers: [RobiotService],
 })
 export class MapDisplayComponent implements OnInit {
     @Input() events: Observable<void>;
     private updateMap: Subscription;
 
     public map: Array<Array<string>>;
-    public rows: Array<any>;
-    public columns: Array<any>;
+    public rows: Array<number>;
+    public columns: Array<number>;
     public terrain: Terrain;
     private positionConfig: Configuration;
 
@@ -31,7 +32,7 @@ export class MapDisplayComponent implements OnInit {
         this.updateMap = this.events?.subscribe(() => this.createMap());
     }
 
-    createMap() {
+    createMap(): void {
         // Get the terrain definition from /assets/terrains
         this.terrain = terrain1;
 

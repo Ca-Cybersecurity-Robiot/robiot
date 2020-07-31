@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import '../config/passport';
 import { getRobiotBattery, getRobiotPosition, getRobiotStatus, moveRobiot } from '../services/robiot.service';
 import logger from '../util/logger';
@@ -7,7 +7,7 @@ import logger from '../util/logger';
  * GET /api/v1/robiot/
  * get Config list from one ROBIOT
  */
-export const getConfigListFromRobiot = async (req: Request, res: Response) => {
+export const getConfigListFromRobiot = async (req: Request, res: Response): Promise<void> => {
     const result = await getRobiotPosition();
     logger.debug(req.body);
     res.status(200).send(result);

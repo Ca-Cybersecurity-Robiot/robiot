@@ -11,6 +11,7 @@ import { Terrain } from '../../shared/models/terrain.model';
     selector: 'app-remote-controlling',
     templateUrl: './remote-controlling.component.html',
     styleUrls: ['./remote-controlling.component.scss'],
+    providers: [RobiotService, DijkstrasService],
 })
 export class RemoteControllingComponent implements OnInit {
     public positionConfig: Configuration;
@@ -38,7 +39,7 @@ export class RemoteControllingComponent implements OnInit {
         });
     }
 
-    submitForm() {
+    submitForm(): void {
         const validDestination = this.robiotService.checkDestinationValidity(
             this.map,
             this.form.value.coord,
@@ -80,13 +81,13 @@ export class RemoteControllingComponent implements OnInit {
     }
 
     // Get the data necessary for our component
-    initData() {
+    initData(): void {
         this.getConfigData();
         this.terrain = terrain1;
         this.map = this.robiotService.buildArrayFromTerrain(this.terrain);
     }
 
-    getConfigData() {
+    getConfigData(): void {
         // Status config
         this.robiotService.getConfig(201).subscribe((config) => {
             // if status changes from moving to stopped, update the map
@@ -111,7 +112,7 @@ export class RemoteControllingComponent implements OnInit {
         return this.form.valid && this.statusConfig.content == 'stopped';
     }
 
-    displayInfoMessage(msg: string) {
+    displayInfoMessage(msg: string): void {
         this.infoMessage = msg;
         // Cleans message after five seconds
         setTimeout(() => {
