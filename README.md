@@ -38,9 +38,9 @@ npm install
 ```
 And run
 
-```
+``
 npm start
-```
+``
 
 End to end test :
 
