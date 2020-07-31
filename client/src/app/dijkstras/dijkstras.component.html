@@ -1,0 +1,19 @@
+<table>
+    <tbody>
+    <!-- Displays the number of each column -->
+    <tr>
+        <td></td>
+        <td *ngFor="let column of columns" class="row-col-nb">{{ column }}</td>
+    </tr>
+    <tr *ngFor="let row of rows">
+        <!-- Displays the number of each row -->
+        <td class="row-col-nb">{{ row }}</td>
+        <td *ngFor="let column of columns" [ngClass]="result.map[column][row]">
+            {{ result.map[column][row].distance }}
+            <span *ngIf="result.map[column][row].terrain == 'X'" class="obstacle">X</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div [innerHTML]="result.report"></div>

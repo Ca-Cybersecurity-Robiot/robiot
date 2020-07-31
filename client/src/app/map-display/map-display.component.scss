@@ -1,0 +1,42 @@
+.title,
+.legend {
+    text-align: center;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+
+    td {
+        font-size: 15px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .row-col-nb {
+        font-style: italic;
+        font-size: 12px;
+    }
+
+    // Robot image
+    .blender-img {
+        height: auto;
+        width: 36px;
+    }
+}
+
+// Start
+.D {
+    color: #1976d2;
+    font-weight: bold;
+}
+// Trees
+.O {
+    color: #388e3c;
+    font-weight: bold;
+}
+// Obstacles
+.X {
+    color: #e53935;
+    font-weight: bold;
+}

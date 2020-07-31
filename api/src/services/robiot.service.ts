@@ -18,6 +18,17 @@ export async function getRobiotPosition(): Promise<AxiosResponse> {
     }
 }
 
+export async function getRobiotStatus(): Promise<AxiosResponse> {
+    try {
+        const response = await axios.get(`${robiotUrl}/configurations/201`, {
+            params: {},
+        });
+        return response.data;
+    } catch (e) {
+        logger.error(e);
+    }
+}
+
 export async function getRobiotBattery(): Promise<AxiosResponse> {
     try {
         const response = await axios.get(`${robiotUrl}/configurations/101`, {
@@ -29,7 +40,7 @@ export async function getRobiotBattery(): Promise<AxiosResponse> {
     }
 }
 
-export async function moveRobiot(x: string, y: string): Promise<AxiosResponse> {
+export async function moveRobiot(content: string): Promise<AxiosResponse> {
     try {
         const response = await axios.put(`${robiotUrl}/configurations/302`, {
             id: '302',
@@ -38,7 +49,7 @@ export async function moveRobiot(x: string, y: string): Promise<AxiosResponse> {
                 href: '/configurations/302',
             },
             name: 'Destination Location',
-            content: `${x},${y}`, //ex: 2.0,2.0
+            content, //ex: 2.0,2.0
             status: 'ACTIVE',
         });
         return response.data;
