@@ -1,16 +1,16 @@
 export class terrain {
-    name: string
-    height: Number
-    width: Number
+    name: string;
+    height: number;
+    width: number;
     obstacles: [
         {
-            x: Number,
-            y: Number,
-        }]
+            x: number,
+            y: number,
+        },];
     trees: [
         {
-            x: Number,
-            y: Number,
-        }
-    ]
+            x: number,
+            y: number,
+        },
+    ];
 }

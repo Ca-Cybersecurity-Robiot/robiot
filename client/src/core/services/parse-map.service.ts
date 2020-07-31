@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { terrain } from '../../assets/terrains/terrain';
 
 @Injectable({
-    providedIn:'root',
+    providedIn: 'root',
 })
 export class ParseMapService {
-    terrain: terrain ;
+    terrain: terrain;
 
     getMap(): terrain {
         return this.terrain;
@@ -14,9 +14,9 @@ export class ParseMapService {
     parseFile(file: string): void {
         const fileTab = file.split('\n');
         for (const fil of fileTab) {
-            for(let _i = 0; _i < fil.length; _i++) {
+            for( let _i = 0; _i < fil.length; _i++) {
                 if (fil[_i] === 'O') {
-                        const coordo = {x:Number(_i) , y:Number(fileTab.indexOf(fil)) };
+                        const coordo = {x: Number(_i) , y: Number(fileTab.indexOf(fil)) };
                     this.terrain.trees.push(coordo);
                 }
                 if (fil[_i] === 'X') {
