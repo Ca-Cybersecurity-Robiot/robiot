@@ -1,0 +1,28 @@
+<div class="container">
+    <h3 class="title col-12">{{ terrain.name }}</h3>
+    <h5 class="legend">
+        <span class="D">D</span> = Départ
+        <span class="O">O</span> = Arbre
+        <span class="X">X</span> = obstacle
+    </h5>
+
+    <table>
+        <tbody>
+        <!-- Displays the number of each column -->
+        <tr>
+            <td></td>
+            <td *ngFor="let column of columns" class="row-col-nb">{{ column }}</td>
+        </tr>
+        <tr *ngFor="let row of rows">
+            <!-- Displays the number of each row -->
+            <td class="row-col-nb">{{ row }}</td>
+            <td *ngFor="let column of columns" [ngClass]="map[column][row]">
+                <img src="assets/images/blender-icon3.png" alt="" class="blender-img"
+                     *ngIf="map[column][row] == 'R'">
+
+                <span *ngIf="map[column][row] != 'R'">{{ map[column][row] }}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

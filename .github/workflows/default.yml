@@ -39,22 +39,36 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Install dependencies
+      - name: Install dependencies client
         run: |
           apk add --no-cache git chromium
           npm i
         working-directory: ./client
-      - name: Lint
+      - name: Lint client
         run: npm run lint
         working-directory: ./client
-      - name: Check version dependencies
+      - name: Check version dependencies client
         run: npm run ncu
         working-directory: ./client
-      - name: Build
+      - name: Build client
         run: npm run build
         working-directory: ./client
-      - name: Run tests
+      - name: Run tests client
         env:
           CHROME_BIN: /usr/bin/chromium-browser
         run: npm run test
         working-directory: ./client
+      - name: Install dependencies API
+        run: |
+          apk add --no-cache git chromium
+          npm i
+        working-directory: ./api
+      - name: Lint API
+        run: npm run lint
+        working-directory: ./api
+      - name: Check version dependencies API
+        run: npm run ncu
+        working-directory: ./api
+      - name: Build client API
+        run: npm run build
+        working-directory: ./api

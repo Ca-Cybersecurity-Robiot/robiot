@@ -1,0 +1,114 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Upload Release Asset
+
+jobs:
+  build:
+    container:
+      image: node:12-alpine
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      ## CLIENT
+      - name: Install dependencies client
+        working-directory: ./client
+        run: |
+          apk add --no-cache git chromium
+          npm i
+      - name: Build project client
+        working-directory: ./client
+        run: |
+          npm run build
+      - name: Archive production artifacts client
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-client
+          path: ./client/dist
+      ## API
+      - name: Install dependencies API
+        working-directory: ./api
+        run: npm i
+      - name: Build project API
+        working-directory: ./api
+        run: |
+          npm run build
+      - name: Archive production artifacts API
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-api
+          path: ./api/dist
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Download dist result for build client
+        uses: actions/download-artifact@v2
+        with:
+          name: dist-client
+          path: ./client/dist
+      - name: Download dist result for build API
+        uses: actions/download-artifact@v2
+        with:
+          name: dist-api
+          path: ./api/dist
+      - name: ZIP client
+        working-directory: ./client
+        run: |
+          zip -r -j client dist/*
+      - name: ZIP API
+        working-directory: ./api
+        run: |
+          zip -r -j api dist/*
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset client
+        id: upload-release-asset-client
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./client/client.zip
+          asset_name: client.zip
+          asset_content_type: application/zip
+      - name: Upload Release Asset API
+        id: upload-release-asset-api
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./api/api.zip
+          asset_name: api.zip
+          asset_content_type: application/zip

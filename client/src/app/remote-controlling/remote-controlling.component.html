@@ -1,0 +1,50 @@
+<div class="container row">
+    <div class="column col-6">
+        <h3>Position actuelle :</h3>
+
+        <div class="row">
+            <div class="column status-title">
+                <div>X</div>
+                <div>Y</div>
+                <div>Statut</div>
+                <div>Battery</div>
+            </div>
+
+            <div class="column">
+                <div>{{ positionConfig ? robiotService.getXCoordFromConfig(positionConfig) : '' }}</div>
+                <div>{{ positionConfig ? robiotService.getYCoordFromConfig(positionConfig) : '' }}</div>
+                <div>{{ statusConfig?.content }}</div>
+                <div>{{ batteryConfig?.content }}</div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div class="column coor-form col-6">
+        <h3>Nouvelle position souhaitée:</h3>
+
+        <form [formGroup]="form" class="column" (submit)="submitForm()">
+            <div class="form-group form-inline">
+                <label for="coord">Coordonée à modifier : </label>
+                <select class="form-control" name="coord" id="coord" formControlName="coord">
+                    <option value="x">X</option>
+                    <option value="y">Y</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline">
+                <label for="value">Nouvelle valeur de la coordonée : </label>
+                <input id="value" type="number" class="form-control" formControlName="value"/>
+            </div>
+
+            <div class="row">
+                <button type="submit" class="btn btn-info" [disabled]="!canSubmit()">ENVOYER</button>
+                <div *ngIf="infoMessage" class="alert alert-primary info-msg" role="alert">
+                    {{ this.infoMessage }}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<app-map-display [events]="updateMap.asObservable()" id="app-map-display"></app-map-display>
+
