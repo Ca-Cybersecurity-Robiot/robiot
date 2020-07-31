@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { terrain1 } from '../../assets/terrains/terrain1';
+import { DijkstrasService } from '../../core/services/dijkstras.service';
 import { RobiotService } from '../../core/services/robiot.service';
 import { Configuration } from '../../shared/models/configuration.model';
 import { Terrain } from '../../shared/models/terrain.model';
@@ -22,7 +23,11 @@ export class RemoteControllingComponent implements OnInit {
     private map: Array<Array<string>>;
     public updateMap: Subject<void> = new Subject<void>();
 
-    constructor(public robiotService: RobiotService, private formBuilder: FormBuilder) {}
+    constructor(
+        public robiotService: RobiotService,
+        private dijkstrasService: DijkstrasService,
+        private formBuilder: FormBuilder,
+    ) {}
 
     ngOnInit(): void {
         this.initData();

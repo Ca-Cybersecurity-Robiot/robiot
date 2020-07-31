@@ -43,7 +43,9 @@ export class RobiotService {
 
     // Creates a bi-dimensionnal array representing a terrain from a terrain object
     buildArrayFromTerrain(terrain: Terrain): Array<Array<string>> {
-        let map = Array.from({ length: 30 }, () => Array.from({ length: 30 }, () => CaseValue.EMPTY));
+        let map = Array.from({ length: terrain.width }, () =>
+            Array.from({ length: terrain.height }, () => CaseValue.EMPTY),
+        );
 
         // Start
         map[0][0] = CaseValue.START;
