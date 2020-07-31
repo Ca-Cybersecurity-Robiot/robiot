@@ -55,6 +55,7 @@ jobs:
           pwd
           ls
       - name: Where 2
+        working-directory: ./client
         run: |
           pwd
           ls
