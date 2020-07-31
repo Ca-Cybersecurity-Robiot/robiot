@@ -219,3 +219,6 @@ const httpsAgent = new https.Agent({
 ```
 
 Une solution alternative consiste à mettre en place l'application sur un serveur (nginx, Apache, tomcat etc ...).
+
+## Github actions
+![](./assets/workflow-github.png)
