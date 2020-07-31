@@ -93,7 +93,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload Release Asset client
-        id: upload-release-asset
+        id: upload-release-asset-client
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -103,7 +103,7 @@ jobs:
           asset_name: client.zip
           asset_content_type: application/zip
       - name: Upload Release Asset API
-        id: upload-release-asset
+        id: upload-release-asset-api
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
