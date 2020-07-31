@@ -1,6 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import logger from '../util/logger';
 
+const CONTENT_VALUE_REGEX = /^\-?\d+\.\d+\,\-?\d+\.\d$/;
+
 /**
  * Service used to call ROBIOT API
  */
@@ -42,6 +44,11 @@ export async function getRobiotBattery(): Promise<AxiosResponse> {
 
 export async function moveRobiot(content: string): Promise<AxiosResponse> {
     try {
+        const contentIsValid = CONTENT_VALUE_REGEX.test(content);
+        if (!contentIsValid) {
+            throw new Error('Content value is not valid');
+        }
+
         const response = await axios.put(`${robiotUrl}/configurations/302`, {
             id: '302',
             link: {

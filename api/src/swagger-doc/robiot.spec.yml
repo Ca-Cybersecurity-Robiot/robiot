@@ -23,7 +23,7 @@ components:
             - in: path
               name: configId
               schema:
-                type: integer
+                  type: integer
         tags: [Robiot]
         responses:
             '200':
@@ -45,6 +45,20 @@ components:
         responses:
             '200':
                 description: A bearer token
+                content:
+                    application/json:
+                        schema:
+                            type: string
+
+/api/v1/robiot/configuration/battery:
+    get:
+        servers:
+            - url: http://localhost:3000/
+        description: Get robiot battery value
+        tags: [Robiot]
+        responses:
+            '200':
+                description: return battery configuration
                 content:
                     application/json:
                         schema:

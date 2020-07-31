@@ -6,6 +6,7 @@ const API_URL = '/api/v1/robiot/';
 
 router.route(`${API_URL}`).get(robiotController.getConfigListFromRobiot);
 router.route(`${API_URL}:configId`).get(robiotController.getConfigByIdFromRobiot);
-router.route(`${API_URL}:configId`).put(robiotController.putConfigByIdToRobiot);
+router.route(`${API_URL}:configId`).put(robiotController.putMoveRobiot);
+router.route(`${API_URL}/configuration/battery`).put(robiotController.getRobiotBatteryValue);
 
 export default router;
