@@ -6,10 +6,9 @@
 
 l'objectif de ce chapitre est de présenter une méthode d'authentification basée sur les certificats SSL/TLS et la configuration tomcat.
 Cette méthode requiert au minimum 3 certificats :
- - un certificat pour l'autorité de certification, ce certificat peut être généré manuellement 
- ou bien vous pouvez acheter les signatures nécessaire auprès d'une autorité de certification 
- - Un certificat pour le serveur (à faire signer par l'autorité de certification)
- - Un certificat pour le client (à faire signer par l'autorité de certification)
+- un certificat pour l'autorité de certification, ce certificat peut être généré manuellement ou bien vous pouvez acheter les signatures nécessaire auprès d'une autorité de certification 
+- Un certificat pour le serveur (à faire signer par l'autorité de certification)
+- Un certificat pour le client (à faire signer par l'autorité de certification)
  
 Après l'obtention des certificats l'objectif est de mettre à jour la configuration de tomcat afin activer l'authentification 
 d'un client par certificat. Enfin nous ajoutons des contraintes de securités afin de limiter les url et méthode HTTP disponible.
