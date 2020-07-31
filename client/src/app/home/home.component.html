@@ -1,1 +1,13 @@
 <p>home works!</p>
+<form action=""  >
+    <label for="map">Choose a map file:</label>
+
+    <input type="file" id="map" name="map" accept="txt" (change)="readFile($event.target.files)">
+    <div class="alert alert-primary" role="alert" *ngIf="alert">
+        Type file is good
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="!alert">
+        Put a file or change type file
+    </div>
+</form>
+
