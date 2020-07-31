@@ -10,8 +10,9 @@ jobs:
   build:
     container:
       image: node:12-alpine
-    name: Upload Release Asset
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
