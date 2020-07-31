@@ -6,7 +6,7 @@
 For run API :
 
 Run 
-```shell script
+```
 cd api/
 docker-compose up -d
 ```
@@ -32,7 +32,7 @@ npm run watch-debug
 For run client :
 
 Run 
-```
+```shell script
 cd client/
 npm install
 ```
