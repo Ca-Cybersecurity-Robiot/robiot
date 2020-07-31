@@ -1,25 +1,20 @@
 import { Injectable } from '@angular/core';
+import { terrain } from '../../assets/terrains/terrain';
 
 @Injectable({
     providedIn:'root',
 })
 export class ParseMapService {
-    terrain: any = {
-        name: 'Terrain 1',
-        height: 30,
-        width: 50,
-        obstacles: [],
-        trees: [],
-    };
+    terrain: terrain ;
 
-    getMap(): void {
+    getMap(): terrain {
         return this.terrain;
     }
 
     parseFile(file: string): void {
         const fileTab = file.split('\n');
         for (const fil of fileTab) {
-            for(const _i = 0; _i < fil.length; _i++) {
+            for(let _i = 0; _i < fil.length; _i++) {
                 if (fil[_i] === 'O') {
                         const coordo = {x:Number(_i) , y:Number(fileTab.indexOf(fil)) };
                     this.terrain.trees.push(coordo);
