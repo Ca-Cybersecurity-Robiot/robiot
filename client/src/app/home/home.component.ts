@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
         } else {
             this.alert =false ;
             console.log('File type error');
-        }
+            }
 
     }
 }
