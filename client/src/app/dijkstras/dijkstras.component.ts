@@ -7,10 +7,11 @@ import { RobiotService } from '../../core/services/robiot.service';
     selector: 'app-dijkstras',
     templateUrl: './dijkstras.component.html',
     styleUrls: ['./dijkstras.component.scss'],
+    providers: [RobiotService, DijkstrasService],
 })
 export class DijkstrasComponent implements OnInit {
     public map: Array<Array<string>>;
-    public result: { map: Array<Array<any>>; report: string };
+    public result: { map: Array<Array<{ terrain: string; distance: number }>>; report: string };
     public rows: number[];
     public columns: number[];
 

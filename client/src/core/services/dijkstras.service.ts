@@ -13,7 +13,7 @@ export class DijkstrasService {
     ): { map: Array<Array<{ distance: number; terrain: string }>>; report: string } {
         let trees = treesToCheck;
         let newMap;
-        let report: string = '';
+        let report = '';
 
         // Iterates as long as there are trees left to check+
         while (trees.length > 0) {
@@ -41,7 +41,11 @@ export class DijkstrasService {
     }
 
     // Fills the map object with value indicating the distance from the initial position
-    fillEveryDirection(map: Array<Array<any>>, position: Position, turn: number) {
+    fillEveryDirection(
+        map: Array<Array<{ terrain: string; distance: number }>>,
+        position: Position,
+        turn: number,
+    ): void {
         // Left
         if (
             position.x - 1 >= 0 &&
@@ -83,8 +87,7 @@ export class DijkstrasService {
         }
     }
 
-    private initiateMap(map: Array<Array<string>>, position) {
-        //
+    private initiateMap(map: Array<Array<string>>, position): Array<Array<{ terrain: string; distance: number }>> {
         const newMap = Array.from({ length: map.length }, () => Array.from({ length: map[0].length }, () => null));
 
         // Fills the map

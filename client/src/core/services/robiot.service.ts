@@ -7,9 +7,7 @@ import { Configuration } from '../../shared/models/configuration.model';
 import { Direction } from '../../shared/models/direction.enum';
 import { Terrain } from '../../shared/models/terrain.model';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class RobiotService {
     private readonly resourceUrl;
 
@@ -37,7 +35,7 @@ export class RobiotService {
         return this.http.get<Configuration>(this.resourceUrl + '/robiot/' + id);
     }
 
-    saveConfig(config: Configuration) {
+    saveConfig(config: Configuration): Observable<Configuration> {
         return this.http.put(this.resourceUrl + '/robiot/' + config.id, config);
     }
 
@@ -90,11 +88,11 @@ export class RobiotService {
 
     // Checks if a destination is obtainable (not out of bound, doesnt cross obstacles etc..)
     checkDestinationValidity(
-        map,
-        coordToChange,
-        oldValue,
-        newValue,
-        otherCoordValue,
+        map: Array<Array<string>>,
+        coordToChange: string,
+        oldValue: number,
+        newValue: number,
+        otherCoordValue: number,
     ): { valid: boolean; msg?: string } {
         switch (coordToChange) {
             case 'x':
