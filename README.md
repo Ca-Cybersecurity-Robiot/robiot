@@ -2,6 +2,84 @@
 ![Build, Quality, Test](https://github.com/Ca-Cybersecurity-Robiot/robiot/workflows/Build,%20Quality,%20Test/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e7d04395ccee48d5bcf0ed850cfc1078)](https://app.codacy.com/gh/Ca-Cybersecurity-Robiot/robiot?utm_source=github.com&utm_medium=referral&utm_content=Ca-Cybersecurity-Robiot/robiot&utm_campaign=Badge_Grade_Settings)
 
+## API
+For run API :
+
+Run 
+```shell script
+cd api/
+docker-compose up -d
+```
+Run 
+
+``
+npm install
+``
+
+And run 
+
+``
+npm start
+``
+
+OR debug mode :
+
+``
+npm run watch-debug
+``
+
+## CLIENT
+For run client :
+
+Run 
+```shell script
+cd client/
+npm install
+```
+And run
+
+``
+npm start
+``
+
+End to end test :
+
+``
+npm run e2e
+``
+
+## Commons commands
+
+Build application :
+
+``
+npm run build
+``
+
+Run unit test :
+
+``
+npm run test
+``
+
+Check update dependencies major :
+
+``
+npm run ncu
+``
+
+Check error lint :
+
+``
+npm run lint
+``
+
+auto-fix : 
+
+``
+npm run lint -- --fix
+``
+
 ## SSL/TLS Sécurisation du lien entre robiot et API
 
 L'objectif de ce chapitre est de présenter une méthode d'authentification basée sur les certificats SSL/TLS et la configuration tomcat.
@@ -127,81 +205,17 @@ keytool -importkeystore -destkeystore tomcat.keystore -srckeystore -ClientCert.p
   </security-role>
 ```
 
+### 9 - Mettre en place la communication depuis l'api 
 
-## API
-For run API :
+Dans le cadre du développement de l'API, nous avons utilisé la librairie axios pour communiquer avec l'api du robiot.
+Pour ce faire il suffit d'instancier la libraire avec un httpsAgent auquel nous fournissons les clés et certificat necessaire   
 
-Run 
 ```shell script
-cd api/
-docker-compose up -d
+const httpsAgent = new https.Agent({
+  ca: fs.readFileSync("./Server.crt"),        
+  cert: fs.readFileSync("./Client.crt"),
+  key: fs.readFileSync("./ClientKey.pem"), 
+})
 ```
-Run 
 
-``
-npm install
-``
-
-And run 
-
-``
-npm start
-``
-
-OR debug mode :
-
-``
-npm run watch-debug
-``
-
-## CLIENT
-For run client :
-
-Run 
-```shell script
-cd client/
-npm install
-```
-And run
-
-``
-npm start
-``
-
-End to end test :
-
-``
-npm run e2e
-``
-
-## Commons commands
-
-Build application :
-
-``
-npm run build
-``
-
-Run unit test :
-
-``
-npm run test
-``
-
-Check update dependencies major :
-
-``
-npm run ncu
-``
-
-Check error lint :
-
-``
-npm run lint
-``
-
-auto-fix : 
-
-``
-npm run lint -- --fix
-``
+Une solution alternative consiste à mettre en place l'application sur un serveur (nginx, Apache, tomcat etc ...).
