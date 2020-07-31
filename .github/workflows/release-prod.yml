@@ -34,6 +34,7 @@ jobs:
           pwd
           ls
       - name: Install dependencies
+        working-directory: ./client
         run: |
           apk add --no-cache git chromium
           npm i
