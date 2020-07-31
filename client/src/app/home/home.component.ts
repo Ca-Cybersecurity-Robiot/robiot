@@ -8,7 +8,7 @@ import { ParseMapService } from '../../core/services/parse-map.service';
 })
 export class HomeComponent implements OnInit {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    alert:boolean;
+    alert: boolean;
     mapReader = null;
     constructor(private parseMapService: ParseMapService) {}
 
@@ -19,14 +19,13 @@ export class HomeComponent implements OnInit {
         const tab = mapFile.name.split('.');
         if (tab[1] === 'txt') {
             this.alert = true;
-            mapFile.text().then((data)=>{
+            mapFile.text().then((data) => {
                 this.mapReader = data;
                 this.parseMapService.parseFile(this.mapReader);
             });
         } else {
-            this.alert =false ;
+            this.alert = false;
             console.log('File type error');
-            }
-
+        }
     }
 }

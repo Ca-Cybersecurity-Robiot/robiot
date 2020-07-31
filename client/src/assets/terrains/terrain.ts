@@ -4,13 +4,14 @@ export class terrain {
     width: number;
     obstacles: [
         {
-            x: number,
-            y: number,
-        },];
+            x: number;
+            y: number;
+        },
+    ];
     trees: [
         {
-            x: number,
-            y: number,
+            x: number;
+            y: number;
         },
     ];
 }
