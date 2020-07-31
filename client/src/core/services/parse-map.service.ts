@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { terrain } from '../../assets/terrains/terrain';
+import { TerrainObj } from '../../assets/terrains/terrain';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ParseMapService {
-    terrain: terrain;
+    terrain: TerrainObj;
 
-    getMap(): terrain {
+    getMap(): TerrainObj {
         return this.terrain;
     }
 

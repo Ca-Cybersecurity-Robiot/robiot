@@ -1,4 +1,4 @@
-export class terrain {
+export class TerrainObj {
     name: string;
     height: number;
     width: number;
