@@ -10,8 +10,8 @@ Cette méthode requiert au minimum 3 certificats :
  - Un certificat pour le serveur (à faire signer par l'autorité de certification)
  - Un certificat pour le client (à faire signer par l'autorité de certification)
  
-Après l'obtention des certificats l'objectif est de mettre à jour la configuration de tomcat afin activer l'authentification 
-d'un client par certificat. Enfin nous ajoutons des contraintes de securités afin de limiter les url et méthode HTTP disponible.
+Après l'obtention des certificats l'objectif est de mettre à jour la configuration de Tomcat afin activer l'authentification 
+d'un client par certificat. Enfin nous ajoutons des contraintes de sécurités afin de limiter les URL et méthode HTTP disponible.
 
 ### 1 -  Création du certificat de l'autorité de certification (cette étape n'est pas nécessaire si vous payez pour l'obtenir) 
 
@@ -23,18 +23,18 @@ openssl genrsa -out CAkey.key 1024
 # Après la saisie de cette commande il faut répondre à quelque question
 openssl req -new -key CAkey.key -out CAReq.csr -config /etc/ssl/openssl.cnf 
 
-# enfin nous signons nous même le certificat avec la commande suivante
+# Enfin nous signons nous même le certificat avec la commande suivante
 openssl x509 -req -days 365 -in CAReq.csr -signkey CAKey.key -out CA.crt
 ```
 
 ### 2 -  Création du certificat pour le serveur
 
 ```shell script
-# Création d'une clef privée pour notre serveur
+# Création d'une clé privée pour notre serveur
 openssl genrsa -out ServerKey.key 1024
 
 # Création du CSR basé sur la clé. 
-# Après la saisie de cette commande il faut répondre à quelque question
+# Après la saisie de cette commande il faut répondre à quelques questions
 openssl req -new -key ServerKey.key -out ServerReq.csr -config /etc/ssl/openssl.cnf 
 
 # enfin nous signons nous même le certificat avec celui de l'autorité de certification 
@@ -48,17 +48,17 @@ openssl x509 -req -days 365 -CA CA.crt -CAkey CAKey.key -CAcreateserial -in Serv
 openssl genrsa -out ClientKey.key 1024
 
 # Création du CSR basé sur la clé. 
-# Après la saisie de cette commande il faut répondre à quelque question
+# Après la saisie de cette commande il faut répondre à quelques questions
 openssl req -new -key ClientKey.key -out CleintReq.csr -config /etc/ssl/openssl.cnf 
 
-# enfin nous signons nous même le certificat avec celui de l'autorité de certification 
+# Enfin nous signons nous même le certificat avec celui de l'autorité de certification 
 openssl x509 -req -days 365 -CA CA.crt -CAkey CAKey.key -CAcreateserial -in CleintReq.csr -out Client.crt
 ```
 
 ### 4 -  Convertion d'un certificat du format crt ver p12
 
 ```shell script
-# Nous convertissons le certificat client au format p12 pour effectuer les test depuis notre navigateur
+# Convertir le certificat client au format p12 pour effectuer les tests depuis notre navigateur
 openssl pkcs12 -export -in Cleint.crt -inkey ClientKey.key -chain -CAfile CA.crt -out ClientCert.p12
 
 ```
@@ -66,14 +66,14 @@ openssl pkcs12 -export -in Cleint.crt -inkey ClientKey.key -chain -CAfile CA.crt
 ### 5 -  Création du truststore pour le serveur tomcat
 
 ```shell script
-# Nous importons le certificat de l'autorité de certification au sein du truststore
+# Importer le certificat de l'autorité de certification au sein du truststore
 keytool -import -alias CertAuth -keystore caCerts.jks -file CA.crt
 ```
 
 ### 5 -  Création du keystore pour le serveur tomcat
 
 ```shell script
-# Nous pouvons utiliser cette commande pour importer tous les certificats au quels nous souhaitons autoriser l'acces
+# Permet d'importer les certificats dont nous souhaiton autoriser l'accès.
 keytool -importkeystore -destkeystore tomcat.keystore -srckeystore -ServerCert.p12 -srcstoretype PKCS12 -alias 1
 keytool -importkeystore -destkeystore tomcat.keystore -srckeystore -ClientCert.p12 -srcstoretype PKCS12 -alias 2
 ```
@@ -93,7 +93,7 @@ keytool -importkeystore -destkeystore tomcat.keystore -srckeystore -ClientCert.p
 ### 7 -  Mettre à jour les utilisateurs dans le fichier tomcat-user.xml
 
 ```shell script
-  # Nous créons un utilisateur avec les informations du certificat généré
+  # Création d'un utilisateur avec les informations du certificat généré
   # Création du rôle robiot
   <role rolename="robiot" />	  
   <user username="tomcat" password="password" roles="manager-gui"/>
@@ -205,5 +205,4 @@ auto-fix :
 ``
 npm run lint -- --fix
 ``
-
 
