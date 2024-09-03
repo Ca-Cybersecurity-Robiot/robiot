@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Download dist result for job 1
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: dist
           path: ./client/dist
